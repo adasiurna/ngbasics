@@ -1,12 +1,22 @@
+
+<p *ngIf="blueClass">Button is blue.</p>
+
+<button (click)="blueClass = !blueClass"
+[ngClass]="{ blue: blueClass }"
+[ngStyle]="{ 'font-size.px': fontSize }">Change</button>
+
+<hr>
+
 <input (keyup)="changeImage($event)" [value]="imgURL">
 
-<app-post [postImg]="imgURL" (imgSelected)="logImg($event)">
-    <p>Some</p>
+<app-post *ngFor="let image of images; let i = index"
+ [postImg]="image" (imgSelected)="logImg($event)">
+    <p>{{ i }} Some caption</p>
 </app-post>
 
 <p>Labas {{ name | titlecase }}!</p>
 <p>Labas {{ getName() }}!</p>
-<p>Labas {{ 15 + 16 }}!</p>
+<p>{{ 15 + 16 }}!</p>
 <p>{{ currentDate | date: 'fullDate' }}</p>
 <p>{{ cost | currency: 'EUR' }}</p>
 <p>{{ temperature | number: '1.0-0' }}</p>
